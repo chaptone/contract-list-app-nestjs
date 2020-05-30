@@ -1,6 +1,6 @@
 import { Contract } from '../interfaces/contract.interface';
 
-export const ContractData= () => ([
+export const ContractData: Contract[] = [
     {
         id: 1,
         firstName: 'Clark',
@@ -10,4 +10,4 @@ export const ContractData= () => ([
         emails: ['superman@dc.io'],
         urls: ['superman.dc.io', 'superman.com'],
     }
-])
+]
