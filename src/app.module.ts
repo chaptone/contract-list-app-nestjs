@@ -12,7 +12,7 @@ import { ContactController } from './contact/contact.controller';
     AppConfigModule,
     AuthModule,
     UserModule,
-    ContactModule
+    ContactModule,
   ],
   controllers: [AppController, ContactController],
   providers: [UserService],

@@ -1,27 +1,34 @@
-import { IsEmail, IsString, IsOptional, IsNotEmpty, IsDateString } from 'class-validator';
+import { IsEmail, IsString, IsOptional, IsNotEmpty, IsDateString, IsNumber, IsNumberString } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreateContactDto {
+
+    @Transform(id => parseInt(id))
+    @IsNumber()
+    @IsNotEmpty()
+    groupId: number
+
     @IsString()
     @IsNotEmpty()
-    firstName: string;
+    firstName: string
 
     @IsString()
     @IsOptional()
-    lastName: string;
+    lastName: string
 
     @IsDateString()
     @IsOptional()
-    birthDate: Date;
+    birthDate: Date
 
     @IsString({each: true})
     @IsOptional()
-    phones: string[];
+    phones: string[]
 
     @IsEmail({}, {each: true})
     @IsOptional()
-    emails: string[];
+    emails: string[]
 
     @IsString({each: true})
     @IsOptional()
-    urls: string[];
+    urls: string[]
 }
