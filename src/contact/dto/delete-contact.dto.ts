@@ -1,8 +1,8 @@
 
 import { IsNumberString, IsNotEmpty } from 'class-validator';
 
-export class DeleteContractDto {
+export class DeleteContactDto {
     @IsNumberString()
     @IsNotEmpty()
-    contractId: number
+    contactId: number
 }

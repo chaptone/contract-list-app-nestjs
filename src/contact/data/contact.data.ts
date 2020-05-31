@@ -1,6 +1,6 @@
-import { Contract } from '../interfaces/contract.interface';
+import { Contact } from '../interfaces/contact.interface';
 
-export const ContractData: Contract[] = [
+export const ContactData: Contact[] = [
     {
         id: 1,
         firstName: 'Clark',
