@@ -6,8 +6,8 @@ import { GroupData } from './data/group.data';
 
 @Injectable()
 export class ContactService {
-    private contacts: Contact[] = [];
-    private groups: Group[] = [];
+    private contacts: Contact[];
+    private groups: Group[];
 
     constructor() {
         this.contacts = ContactData
@@ -25,6 +25,16 @@ export class ContactService {
         // update total contact after create new contact
         group.totalContact = group.totalContact + 1
         return this.contacts;
+    }
+
+    async update(id: number, update: any): Promise<Contact> {
+        const index = this.contacts.findIndex(c => c.id === id)
+        if (index === -1) {
+            throw new HttpException('Contact does not exist!', 404);
+        }
+        const contact = this.contacts[index]
+        this.contacts[index] = { ...contact, ...update }
+        return this.contacts[index]
     }
 
     async findOne(id: number): Promise<Contact | undefined> {

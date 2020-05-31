@@ -1,12 +1,6 @@
-import { IsEmail, IsString, IsOptional, IsNotEmpty, IsDateString, IsNumber } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { IsEmail, IsString, IsOptional, IsNotEmpty, IsDateString } from 'class-validator';
 
-export class CreateContactDto {
-
-    @Transform(id => parseInt(id))
-    @IsNumber()
-    @IsNotEmpty()
-    groupId: number
+export class UpdateContactDto {
 
     @IsString()
     @IsNotEmpty()

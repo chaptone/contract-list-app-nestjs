@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Body, Post, Param, Query, Delete, ParseIntPipe } from "@nestjs/common";
+import { Controller, Get, UseGuards, Body, Post, Param, Query, Delete, ParseIntPipe, Put } from "@nestjs/common";
 import { ContactService } from './contact.service';
 import { Contact } from './interfaces/contact.interface';
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
@@ -6,6 +6,8 @@ import { CreateContactDto } from "./dto/create-contact.dto";
 import { Group } from "./interfaces/group.interface";
 import { CreateGroupDto } from "./dto/create-group.dto";
 import { GroupService } from "./group.service";
+import { UpdateContactDto } from "./dto/update-contact.dto";
+import { UpdateGroupDto } from "./dto/update-group.dto";
 
 @Controller('contactList')
 export class ContactController {
@@ -24,6 +26,12 @@ export class ContactController {
     @Get('contacts/:contactId')
     async getContact(@Param('contactId') contactId: number): Promise<Contact> {
         return this.contactService.findOne(contactId)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Put('contacts/:contactId')
+    async updateContact(@Param('contactId') contactId: number,@Body() updateContact: UpdateContactDto): Promise<Contact> {
+        return this.contactService.update(contactId, updateContact)
     }
 
     @UseGuards(JwtAuthGuard)
@@ -49,6 +57,13 @@ export class ContactController {
     async getGroup(@Param('groupId') contactId: number): Promise<Group> {
         return this.groupService.findOne(contactId)
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Put('groups/:groupId')
+    async updateGroup(@Param('groupId') groupId: number, @Body() updateGroup: UpdateGroupDto): Promise<Group> {
+        return this.groupService.update(groupId, updateGroup)
+    }
+
 
     @UseGuards(JwtAuthGuard)
     @Post('groups')
