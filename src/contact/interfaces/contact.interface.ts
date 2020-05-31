@@ -7,4 +7,5 @@ export interface Contact {
     phones?: string[]
     emails?: string[]
     urls?: string[]
+    photoUrl?: string
 }
