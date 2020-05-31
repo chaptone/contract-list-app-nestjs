@@ -30,7 +30,7 @@ export class ContactService {
         return this.contacts;
     }
 
-    async deleteBook(id: number): Promise<Contact[]> {
+    async deleteContact(id: number): Promise<Contact[]> {
         const index = this.contacts.findIndex(c => c.id === Number(id));
         if (index === -1) {
             throw new HttpException('Contact does not exist!', 404);

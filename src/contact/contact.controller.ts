@@ -30,7 +30,6 @@ export class ContactController {
     @UseGuards(JwtAuthGuard)
     @Delete()
     async deleteBook(@Query() deleteContactDto: DeleteContactDto) {
-        console.log("ContactController -> deleteBook -> DeleteContactDto", deleteContactDto)
         return this.contactService.deleteBook(deleteContactDto.contactId);
     }
 }
